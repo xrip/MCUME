@@ -8,7 +8,8 @@
 #include "nespad.h"
 #include <stdio.h>
 #include <string.h>
-
+#include "hardware/vreg.h"
+#include "hardware/clocks.h"
 extern "C" {
 #include "emuapi.h"
 #include "iopins.h"
@@ -761,7 +762,7 @@ unsigned char emu_ReadI2CKeyboard2(int row) {
 
 
 void emu_InitJoysticks(void) {
-
+    nespad_begin(clock_get_hz(clk_sys) / 1000, NES_GPIO_CLK, NES_GPIO_DATA, NES_GPIO_LAT);
     // Second Joystick
 #ifdef PIN_JOY1_1
     gpio_set_pulls(PIN_JOY1_1,true,false);
