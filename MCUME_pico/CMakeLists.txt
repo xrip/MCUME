@@ -6,11 +6,11 @@ include(pico_sdk_import.cmake)
 # We also need PICO EXTRAS
 #include(pico_extras_import.cmake)
 
-set(TARGET testkeymax)
+#set(TARGET testkeymax)
 #set(TARGET pico20)
 #set(TARGET pico64)
 #set(TARGET pico81)
-#set(TARGET picospeccy)
+set(TARGET picospeccy)
 #set(TARGET pico800)
 #set(TARGET pico5200)
 #set(TARGET picocolem)
@@ -30,6 +30,7 @@ add_subdirectory(FatFs_SPI build)
 include_directories(${TARGET})
 include_directories(config)
 include_directories(display)
+include_directories(nespad)
 #include_directories(vga_t4)
 #include_directories(picovga_t4)
 #include_directories(tft_t)
@@ -358,6 +359,8 @@ add_executable(${TARGET}
 #		${PICOVGA_T4_SOURCES}
 #		${TFT_T_SOURCES}
 		${DISPLAY_SOURCES}
+		nespad/nespad.cpp
+		nespad/nespad.h
 	)
 
 #pico_generate_pio_header(${TARGET} ${CMAKE_CURRENT_LIST_DIR}/vga_t4/timing.pio)

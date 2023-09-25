@@ -12,6 +12,7 @@ extern "C" {
 }
 #include <stdio.h>
 #include "pico_dsp.h"
+#include "nespad.h"
 
 volatile bool vbl=true;
 
@@ -41,6 +42,7 @@ int main(void) {
 //    set_sys_clock_khz(225000, true);    
 //    set_sys_clock_khz(250000, true);  
     stdio_init_all();
+    nespad_begin(clock_get_hz(clk_sys) / 1000, NES_GPIO_CLK, NES_GPIO_DATA, NES_GPIO_LAT);
 
     emu_init();
     char * filename;

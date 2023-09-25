@@ -3,7 +3,30 @@
 
 #include "platform_config.h"
 
+#define AUDIO_PIN       26
+#define VGA_COLORBASE   6
+#define VGA_SYNCBASE    12
+#define VGA_VSYNC       13
 
+#define SD_SPIREG       spi0
+#define SD_SCLK         2
+#define SD_MOSI         3
+#define SD_MISO         4
+#define SD_CS           5
+#define SD_DETECT       255 // 22
+
+
+// TFT
+#define TFT_SPIREG      spi1
+#define TFT_SPIDREQ     DREQ_SPI1_TX
+#define TFT_SCLK        14
+#define TFT_MOSI        15
+#define TFT_MISO        12
+#define TFT_DC          28
+#define TFT_CS          13  // 255 for LORES ST7789 (NO CS)
+#define TFT_RST         255 // 255 for ILI/ST if connected to 3.3V
+#define TFT_BACKLIGHT   255 // hardwired to 3.3v
+#if 0
 #ifdef MCUME_REV1
 
 // Speaker
@@ -238,4 +261,5 @@
 //#define PIN_JOY1_3       6  // RIGHT
 //#define PIN_JOY1_4       5  // LEFT
 
+#endif
 #endif
