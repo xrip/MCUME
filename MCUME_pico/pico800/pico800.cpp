@@ -36,7 +36,7 @@ int main(void) {
 //    set_sys_clock_khz(133000, true);    
 //    set_sys_clock_khz(200000, true);    
 //    set_sys_clock_khz(210000, true);    
-    set_sys_clock_khz(230000, true);    
+    set_sys_clock_khz(272000, true);
 //    set_sys_clock_khz(225000, true);    
 //    set_sys_clock_khz(250000, true);  
     stdio_init_all();
