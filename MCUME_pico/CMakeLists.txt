@@ -17,7 +17,12 @@ set(TARGET pico800)
 #set(TARGET picoo2em)
 #set(TARGET picovcs)
 
-project(${TARGET} C CXX)
+project(${TARGET} C CXX ASM)
+
+set(OUTPUT_DIR "${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
@@ -35,6 +40,8 @@ include_directories(nespad)
 #include_directories(picovga_t4)
 #include_directories(tft_t)
 include_directories(psram)
+
+
 
 if( ${TARGET} MATCHES "pico20" )
 set(PICO20_SOURCES 
@@ -100,6 +107,7 @@ set(PICO800_SOURCES
 		pico800/sio.c
 		pico800/pico800.cpp
 	)
+
 endif()
 
 if( ${TARGET} MATCHES "pico5200" )
@@ -386,7 +394,10 @@ ENDIF()
 target_compile_definitions(${TARGET} PUBLIC N_SD_CARDS=${N_SD_CARDS})
 
 
+
 #pico_enable_stdio_uart(${TARGET} 0)
 #pico_enable_stdio_usb(${TARGET} 0)
-
+pico_define_boot_stage2(slower_boot2 ${PICO_DEFAULT_BOOT_STAGE2_FILE})
+target_compile_definitions(slower_boot2 PRIVATE PICO_FLASH_SPI_CLKDIV=4)
+pico_set_boot_stage2(${TARGET} slower_boot2)
 pico_add_extra_outputs(${TARGET})

@@ -1,3 +1,6 @@
+#include <hardware/clocks.h>
+#include <hardware/structs/vreg_and_chip_reset.h>
+
 #include "pico.h"
 #include "pico/stdlib.h"
 
@@ -35,8 +38,10 @@ int main(void) {
 //    set_sys_clock_khz(150000, true);    
 //    set_sys_clock_khz(133000, true);    
 //    set_sys_clock_khz(200000, true);    
-//    set_sys_clock_khz(210000, true);    
-    set_sys_clock_khz(272000, true);
+//    set_sys_clock_khz(210000, true);
+    hw_set_bits(&vreg_and_chip_reset_hw->vreg, VREG_AND_CHIP_RESET_VREG_VSEL_BITS);
+    sleep_ms(33);
+    set_sys_clock_khz(378 * KHZ, true);
 //    set_sys_clock_khz(225000, true);    
 //    set_sys_clock_khz(250000, true);  
     stdio_init_all();
