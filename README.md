@@ -4,6 +4,34 @@
 </p>
 
 # News
+Mai 2025: Few more updates 
+- Fix sound issues in most emulators for the PICO2ZX
+- add Apple2 emulation (based on AIIE emulator)
+- add PSRAM support to Castaway (Atari ST) for the hyperpetpico HDMI (slow but better compatibility)
+- fix USB_PIO issue on the hyperpetpico HDMI (thanks to the PIO_USB author for the RP2350 fix when overclocked) 
+<br>
+
+Mars 2025: Finally some updates! Add pico2 support for hyperpetpico HDMI and PICO2ZX (Bobricus)
+- HDMI now supported next to TFT (pico2 only)
+- Add USB HOST (pico2 only)
+- Port of new emulators to pico2: pcengine, sega master system, sega genesis (exp), gameboy, msx, pc8086, Atari 260ST(exp)
+- (thanks to the original authors of the code, I only did the port)
+- Instructions when using PICO2ZX:
+  - use binaries in /bin ("pico2zx/tft_hdmi" if you have a TFT+HDMI or "pico2zx/hdmi_only" if only have HDMI)
+  - USR1 = KEMPSTON(>>>>) key, USR2 = MENU(QSAVE) key, USR3 = CURSOR(<<<<) key, DELETE and FIRE have same effect
+  - arrow up + reset => use HDMI default (TFT+HDMI binaries)
+  - arrow left/right + reset => use TFT default (TFT+HDMI binaries)
+  - FIRE: launch game to TFT (TFT+HDMI binaries)
+  - USR1: launch game to HDMI (TFT+HDMI binaries)
+  - USR3: select + launch rom/game in AUTORUN
+  - arrow down + reset => delete autorun mode
+- About USB:
+  - most used keys are mapped
+  - computer emulators starts in keyboard mode, F12 to toggle to joystick mode
+  - console emulators start in joystick mode
+  - joystick mode: FIRE=TAB, arrors for directions, USR3=SPACE, USR1=1 and USR2=2 usually  
+<br>
+
 Mai 2023: add multi display support to T-COMPUTER and PICOZX platforms
 - You can now configure at boot the display to use for each emulator (Teensy41 or PICO)
 - No need for different binaries depending on the display (VGA,ILI and ST displays are all suported)
@@ -188,19 +216,20 @@ Now ported to much more MCUs! <br>
 
 Computer systems supported and status on various MCU platforms<br>
 
-| System | Teensy3.6 | Teensy 4.0 | Teensy4.0 +PSRAM | Teensy4.1 +PSRAM | ESP32 | ESP32-Wrover | Pico |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Zx81        | X | X | X | X | X | X | X |
-| Zx spectrum | X | X | X | X | X | X | X |
-| Atari 800   | X | X | X | X | X | X | X |
-| C64         | X | X | X | X | X | X | X |
-| VIC20       |   |   |   | X |   |   | X |
-| Apple2      |   |   |   | X |   |   |   |
-| Atari 520ST | - | full speed! | X | X (640x400!) | - | slow | - |
-| 8086 XT PC  | - | full speed! | X | X | - | slow | - |
-| MSX1/2      | - | full speed! | X | X | - | - | - |
-| Amiga       | - | - | exp only! | X (640x240!) | - | - | - |
-| Doom        | - | - | - | x | - | - | - |
+| System | Teensy3.6 | Teensy 4.0 | Teensy4.0 +PSRAM | Teensy4.1 +PSRAM | ESP32 | ESP32-Wrover | Pico | Pico2 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Zx81        | X | X | X | X | X | X | X | X |
+| Zx spectrum | X | X | X | X | X | X | X | X |
+| Atari 800   | X | X | X | X | X | X | X | X |
+| C64         | X | X | X | X | X | X | X | X |
+| VIC20       |   |   |   | X |   |   | X | X |
+| Apple2      |   |   |   | X |   |   |   | X |
+| Atari 520ST | - | full speed! | X | X (640x400!) | - | slow | - | - |
+| Atari 260ST | - | - | - | - | - | - | - | X |
+| 8086 XT PC  | - | full speed! | X | X | - | slow | - | X |
+| MSX1/2      | - | full speed! | X | X | - | - | - | X |
+| Amiga       | - | - | exp only! | X (640x240!) | - | - | - | - |
+| Doom        | - | - | - | x | - | - | - | - |
 
 Please compile for smallest code on the Teensy4.0 else you will run out of memory<br><br>
 For Teensy 4.1 with PSRAM try compiling for smallest code (unless it complains at compilation).<br> 
@@ -208,21 +237,21 @@ Doom for example only works if compiled for smallest code!
 
 Game console systems supported and status on various MCU platforms<br>
 
-| System | Teensy3.6 | Teensy 4.0 | Teensy4 +PSRAM | Teensy4.1 +PSRAM | ESP32 | ESP32-Wrover | Pico |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Atari 2600                   | X | X | X | X | X | X | X |
-| Odyssey/Videopac             | X | X | X | X | X | X | X |
-| Colecovision                 | X | X | X | X | X | X | X |
-| Atari 5200                   | X | X | X | X | X | X | X |
-| Nintendo NES                 | X | 384KB roms! | X | X | X | X | - |
-| Vectrex                      | - | full speed! | X | X | - | slow | - |
-| PC Engine                    | - | - | X | X | - | - | - |
-| Gameboy/GBColor              | - | 490KB roms| X | X | - | - | - |
-| Sega Master System/Game Gear | - | - | X | X | - | - | - |
-| Sega Genesis/Megadrive       | - | - | X | X | - | - | - |
+| System | Teensy3.6 | Teensy 4.0 | Teensy4 +PSRAM | Teensy4.1 +PSRAM | ESP32 | ESP32-Wrover | Pico | Pico2 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Atari 2600                   | X | X | X | X | X | X | X | X |
+| Odyssey/Videopac             | X | X | X | X | X | X | X | X |
+| Colecovision                 | X | X | X | X | X | X | X | - |
+| Atari 5200                   | X | X | X | X | X | X | X | X |
+| Nintendo NES                 | X | 384KB roms! | X | X | X | X | - | - |
+| Vectrex                      | - | full speed! | X | X | - | slow | - | - |
+| PC Engine                    | - | - | X | X | - | - | - | X |
+| Gameboy/GBColor              | - | 490KB roms| X | X | - | - | - | X |
+| Sega Master System/Game Gear | - | - | X | X | - | - | - | X |
+| Sega Genesis/Megadrive       | - | - | X | X | - | - | - | X |
 
 # Minimal requirements:
-- Teensy3.6/Teensy4.0, ESP32 Node32S/Wrover SDK chip or Raspberry PICO
+- Teensy3.6/Teensy4.0, ESP32 Node32S/Wrover SDK chip or Raspberry PICO/PICO2
 - ILI9341 (Teensy/ESP32) or ST7789 (Teensy only) SPI display
 - SD card (Teensy uses built-in uSD, ESP32 uses external one connected over SPI, e.g. ILI9341 integrated one)
 - Analog joypad (Arduino or PSP like)
